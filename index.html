@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Online Age Calculator – Calculate Exact Age in Years, Months, Days, Hours & Seconds</title>
+    <meta name="description" content="Use this free Age Calculator tool to find your exact age in years, months, days, hours, minutes, and seconds instantly. Fast, accurate and mobile-friendly tool.">
+    <meta name="keywords" content="age calculator, online age calculator, DOB calculator, birthday calculator, calculate age in seconds">
+    <link rel="canonical" href="https://yourdomain.com">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Age Calculator",
+      "description": "Free online age calculator to calculate exact age in years, months, days, hours, minutes, and seconds.",
+      "applicationCategory": "Utility",
+      "operatingSystem": "All",
+      "offers": {
+        "@type": "Offer",
+        "price": "0"
+      }
+    }
+    </script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body class="dark-theme">
+    <div class="blob-container">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <nav class="glass-nav">
+        <div class="nav-content">
+            <a href="./index.html" class="logo">AGE CALCULATOR</a>
+            <div class="nav-links">
+                <a href="./index.html" class="active">Home</a>
+                <a href="#seo-guide">Age Guide</a>
+                <a href="#" class="leap-year-trigger">Leap Year</a>
+                <a href="./about.html">About</a>
+                <a href="./contact.html">Contact</a>
+                <a href="./privacy-policy.html">Privacy Policy</a>
+                <a href="./terms.html">Terms</a>
+            </div>
+            <button id="theme-toggle" class="theme-btn" aria-label="Toggle Theme">
+                <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            </button>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section class="hero-section">
+            <h1 class="fade-in">Calculate Your Exact Age <span class="gradient-text">Instantly</span></h1>
+            <p class="subtitle slide-up">Find your precise age in years, months, days, hours, minutes, and seconds.</p>
+            
+            <div class="input-card glass">
+                <div class="input-group">
+                    <label>Select your Date of Birth</label>
+                    <div class="dob-select-container">
+                        <select id="dob-day" class="glass-select" aria-label="Select Day">
+                            <option value="" disabled selected>Day</option>
+                        </select>
+                        <select id="dob-month" class="glass-select" aria-label="Select Month">
+                            <option value="" disabled selected>Month</option>
+                            <option value="0">January</option>
+                            <option value="1">February</option>
+                            <option value="2">March</option>
+                            <option value="3">April</option>
+                            <option value="4">May</option>
+                            <option value="5">June</option>
+                            <option value="6">July</option>
+                            <option value="7">August</option>
+                            <option value="8">September</option>
+                            <option value="9">October</option>
+                            <option value="10">November</option>
+                            <option value="11">December</option>
+                        </select>
+                        <select id="dob-year" class="glass-select" aria-label="Select Year">
+                            <option value="" disabled selected>Year</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="input-footer">
+                    <button type="button" id="set-today-btn" class="secondary-btn">Select Today</button>
+                    <button id="calculate-btn" class="glow-button">Calculate Age</button>
+                </div>
+                <p id="error-msg" class="error-text"></p>
+            </div>
+        </section>
+
+        <section id="result-section" class="result-section hidden">
+            <div class="summary-section" style="margin-top: 1.5rem; margin-bottom: 2rem;">
+                <div class="birth-day-card glass slide-up">
+                    <p>You were born on a <span id="birth-day-name" class="highlight">...</span></p>
+                </div>
+            </div>
+
+            <div class="section-title" style="margin: 2rem 0 1.5rem;">
+                <h2>Your Precise Age</h2>
+            </div>
+
+            <div class="stats-grid" style="margin-bottom: 3rem;">
+                <div class="stat-item glass fade-in" style="animation-delay: 0.1s">
+                    <span class="stat-value" id="res-years" style="background: linear-gradient(135deg, var(--accent-primary), var(--accent-cyan)); -webkit-background-clip: text; background-clip: text; color: transparent; font-size: 1.8rem; font-weight: 700;">0</span>
+                    <span class="stat-label">Years</span>
+                </div>
+                <div class="stat-item glass fade-in" style="animation-delay: 0.2s">
+                    <span class="stat-value" id="res-months" style="background: linear-gradient(135deg, var(--accent-primary), var(--accent-cyan)); -webkit-background-clip: text; background-clip: text; color: transparent; font-size: 1.8rem; font-weight: 700;">0</span>
+                    <span class="stat-label">Months</span>
+                </div>
+                <div class="stat-item glass fade-in" style="animation-delay: 0.3s">
+                    <span class="stat-value" id="res-days" style="background: linear-gradient(135deg, var(--accent-primary), var(--accent-cyan)); -webkit-background-clip: text; background-clip: text; color: transparent; font-size: 1.8rem; font-weight: 700;">0</span>
+                    <span class="stat-label">Days</span>
+                </div>
+                <div class="stat-item glass fade-in" style="animation-delay: 0.4s">
+                    <span class="stat-value" id="res-hours" style="background: linear-gradient(135deg, var(--accent-primary), var(--accent-cyan)); -webkit-background-clip: text; background-clip: text; color: transparent; font-size: 1.8rem; font-weight: 700;">00</span>
+                    <span class="stat-label">Hours</span>
+                </div>
+                <div class="stat-item glass fade-in" style="animation-delay: 0.5s">
+                    <span class="stat-value" id="res-minutes" style="background: linear-gradient(135deg, var(--accent-primary), var(--accent-cyan)); -webkit-background-clip: text; background-clip: text; color: transparent; font-size: 1.8rem; font-weight: 700;">00</span>
+                    <span class="stat-label">Minutes</span>
+                </div>
+                <div class="stat-item glass fade-in" style="animation-delay: 0.6s">
+                    <span class="stat-value" id="res-seconds" style="background: linear-gradient(135deg, var(--accent-primary), var(--accent-cyan)); -webkit-background-clip: text; background-clip: text; color: transparent; font-size: 1.8rem; font-weight: 700;">00</span>
+                    <span class="stat-label">Seconds</span>
+                </div>
+            </div>
+
+            <div class="section-title" style="margin: 2rem 0 1.5rem;">
+                <h2>Cumulative Statistics</h2>
+            </div>
+
+            <div class="stats-grid" style="margin-bottom: 3rem;">
+                <div class="stat-item glass">
+                    <span class="stat-value" id="total-months">0</span>
+                    <span class="stat-label">Total Months</span>
+                </div>
+                <div class="stat-item glass">
+                    <span class="stat-value" id="total-weeks">0</span>
+                    <span class="stat-label">Total Weeks</span>
+                </div>
+                <div class="stat-item glass">
+                    <span class="stat-value" id="total-days">0</span>
+                    <span class="stat-label">Total Days</span>
+                </div>
+                <div class="stat-item glass">
+                    <span class="stat-value" id="total-hours">0</span>
+                    <span class="stat-label">Total Hours</span>
+                </div>
+                <div class="stat-item glass">
+                    <span class="stat-value" id="total-minutes">0</span>
+                    <span class="stat-label">Total Minutes</span>
+                </div>
+                <div class="stat-item glass">
+                    <span class="stat-value" id="total-seconds">0</span>
+                    <span class="stat-label">Total Seconds</span>
+                </div>
+            </div>
+
+            <div class="birthday-countdown">
+                <div class="countdown-card glass">
+                    <h3>Next Birthday In</h3>
+                    <div class="countdown-timer">
+                        <div class="tm">
+                            <span id="cd-months">00</span>
+                            <span class="tm-label">Months</span>
+                        </div>
+                        <div class="tm">
+                            <span id="cd-days">00</span>
+                            <span class="tm-label">Days</span>
+                        </div>
+                        <div class="tm">
+                            <span id="cd-hours">00</span>
+                            <span class="tm-label">Hours</span>
+                        </div>
+                        <div class="tm">
+                            <span id="cd-mins">00</span>
+                            <span class="tm-label">Minutes</span>
+                        </div>
+                        <div class="tm">
+                            <span id="cd-secs">00</span>
+                            <span class="tm-label">Seconds</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="fun-facts">
+                <div class="fact-card glass">
+                    <div class="fact-icon">❤️</div>
+                    <div class="fact-info">
+                        <span class="fact-val" id="fact-heart">0</span>
+                        <span class="fact-desc">Estimated Heartbeats</span>
+                    </div>
+                </div>
+                <div class="fact-card glass">
+                    <div class="fact-icon">🫁</div>
+                    <div class="fact-info">
+                        <span class="fact-val" id="fact-breaths">0</span>
+                        <span class="fact-desc">Estimated Breaths</span>
+                    </div>
+                </div>
+                <div class="fact-card glass">
+                    <div class="fact-icon">😴</div>
+                    <div class="fact-info">
+                        <span class="fact-val" id="fact-sleep">0</span>
+                        <span class="fact-desc">Hours of Sleep</span>
+                    </div>
+                </div>
+            </div>
+
+
+        </section>
+
+        <!-- Step-by-Step Roadmap Section -->
+        <section class="roadmap-section slide-up" style="margin: 3.5rem auto 1.5rem; text-align: center; max-width: 800px;">
+            <div class="content-card glass" style="padding: 2.2rem 2rem; border-radius: 20px;">
+                <h2 style="font-size: 1.8rem; line-height: 1.3; margin-bottom: 1.5rem; color: var(--accent-primary); font-family: 'Poppins', sans-serif; font-weight: 700;">How to Use this Age Calculator - Step-by-Step Roadmap</h2>
+                
+                <div class="roadmap-steps" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; text-align: left; margin-top: 1.5rem;">
+                    <div class="step-card glass" style="padding: 1.5rem; border-radius: 12px; border: 1px solid var(--border-color); display: flex; flex-direction: column; gap: 0.5rem; background: rgba(255, 255, 255, 0.01);">
+                        <span style="font-size: 2.2rem; font-weight: 800; color: var(--accent-primary); opacity: 0.85; line-height: 1;">01</span>
+                        <h3 style="font-family: 'Poppins', sans-serif; font-weight: 600; color: var(--text-primary); font-size: 1.1rem; margin-top: 0.2rem;">Select Date of Birth</h3>
+                        <p style="color: var(--text-secondary); font-size: 0.88rem; line-height: 1.5;">Choose your exact day, month, and year of birth from the intuitive dropdown menu interface above.</p>
+                    </div>
+                    
+                    <div class="step-card glass" style="padding: 1.5rem; border-radius: 12px; border: 1px solid var(--border-color); display: flex; flex-direction: column; gap: 0.5rem; background: rgba(255, 255, 255, 0.01);">
+                        <span style="font-size: 2.2rem; font-weight: 800; color: var(--accent-secondary); opacity: 0.85; line-height: 1;">02</span>
+                        <h3 style="font-family: 'Poppins', sans-serif; font-weight: 600; color: var(--text-primary); font-size: 1.1rem; margin-top: 0.2rem;">Choose Reference Date</h3>
+                        <p style="color: var(--text-secondary); font-size: 0.88rem; line-height: 1.5;">Select the target date for your age metrics calculation. By default, it is configured for today's calendar date.</p>
+                    </div>
+                    
+                    <div class="step-card glass" style="padding: 1.5rem; border-radius: 12px; border: 1px solid var(--border-color); display: flex; flex-direction: column; gap: 0.5rem; background: rgba(255, 255, 255, 0.01);">
+                        <span style="font-size: 2.2rem; font-weight: 800; color: var(--accent-cyan); opacity: 0.85; line-height: 1;">03</span>
+                        <h3 style="font-family: 'Poppins', sans-serif; font-weight: 600; color: var(--text-primary); font-size: 1.1rem; margin-top: 0.2rem;">Instant Precision Results</h3>
+                        <p style="color: var(--text-secondary); font-size: 0.88rem; line-height: 1.5;">Click "Calculate Age" to receive your age down to the second, upcoming birthday countdown, and biological heartbeats statistics!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEO Content & Detailed Chronology Guide Section -->
+        <section id="seo-guide" class="seo-guide-section slide-up" style="margin: 2.5rem auto 1.5rem; max-width: 800px;">
+            <div class="content-card glass" style="padding: 2.5rem 2rem; border-radius: 20px; text-align: left;">
+                <h2 style="font-size: 1.8rem; line-height: 1.3; margin-bottom: 1.5rem; color: var(--accent-primary); font-family: 'Poppins', sans-serif; font-weight: 700;">Understanding Precise Age & Chronological Calculations</h2>
+                <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.5rem;">
+                    Ever wondered how an online Age Calculator calculates your exact age down to the millisecond, or how it preserves precision when handling leap years and variable month lengths? Time is a dynamic dimension, and our system translates date intervals with strict physical and historical accuracy.
+                </p>
+                
+                <!-- Seamless Collapsible Container for SEO Indexability -->
+                <div id="seo-collapsible" class="seo-collapsible">
+                    <div class="seo-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.8rem; margin-top: 1rem;">
+                        <div class="seo-card" style="display: flex; flex-direction: column; gap: 0.5rem;">
+                            <h3 style="font-family: 'Poppins', sans-serif; font-weight: 600; color: var(--text-primary); font-size: 1.15rem; margin-bottom: 0.3rem; display: flex; align-items: center; gap: 0.5rem;">
+                                <span style="color: var(--accent-cyan);">•</span> The Leap Year Formula
+                            </h3>
+                            <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.55;">
+                                Our checker operates on the Gregorian calendar standard introduced in 1582. Because a solar orbit takes approximately 365.2425 days, we adjust for this fractional discrepancy by adding an extra day (February 29th) every four years. However, century years (such as 1900 or 2100) are only leap years if they are perfectly divisible by 400.
+                            </p>
+                        </div>
+
+                        <div class="seo-card" style="display: flex; flex-direction: column; gap: 0.5rem;">
+                            <h3 style="font-family: 'Poppins', sans-serif; font-weight: 600; color: var(--text-primary); font-size: 1.15rem; margin-bottom: 0.3rem; display: flex; align-items: center; gap: 0.5rem;">
+                                <span style="color: var(--accent-secondary);">•</span> Variable Month Adjustments
+                            </h3>
+                            <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.55;">
+                                A common issue in manual age subtraction is dealing with different month lengths (varying between 28, 29, 30, and 31 days). Our algorithm computes the exact distance by looking back at the specific calendar lengths of preceding individual months to construct a flawless profile of total months, weeks, and remaining days.
+                            </p>
+                        </div>
+
+                        <div class="seo-card" style="display: flex; flex-direction: column; gap: 0.5rem;">
+                            <h3 style="font-family: 'Poppins', sans-serif; font-weight: 600; color: var(--text-primary); font-size: 1.15rem; margin-bottom: 0.3rem; display: flex; align-items: center; gap: 0.5rem;">
+                                <span style="color: var(--accent-primary);">•</span> Biological Rhythm Tracking
+                            </h3>
+                            <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.55;">
+                                Beyond standard calendars, the tool estimates your total lifetime heartbeats and breathing cycles using healthy human resting baselines (average of 80 beats and 16 breaths per minute). This translates abstract calendar digits into visceral biological milestones that connect you directly to your internal tempo.
+                            </p>
+                        </div>
+
+                        <div class="seo-card" style="display: flex; flex-direction: column; gap: 0.5rem;">
+                            <h3 style="font-family: 'Poppins', sans-serif; font-weight: 600; color: var(--text-primary); font-size: 1.15rem; margin-bottom: 0.3rem; display: flex; align-items: center; gap: 0.5rem;">
+                                <span style="color: var(--accent-cyan);">•</span> Total Seconds Subtraction
+                            </h3>
+                            <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.55;">
+                                By calculating the precise absolute timestamps since your date of birth, we can determine your cumulative lifetime translated into total weeks, days, hours, minutes, and running seconds, updating continually in real-time. This dynamic representation is highly favored by researchers and developers worldwide.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Premium Toggle Button Container -->
+                <div class="seo-btn-wrapper" style="text-align: center; margin-top: 2rem;">
+                    <button type="button" id="seo-toggle-btn" class="seo-toggle-btn">
+                        <span>Read More</span>
+                        <svg class="chevron-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="glass-footer">
+        <p>&copy; 2026 Age Calculator. Designed with Precision.</p>
+        <div class="footer-links">
+            <a href="./index.html">Home</a>
+            <a href="#seo-guide">Age Guide</a>
+            <a href="#" class="leap-year-trigger">Leap Year</a>
+            <a href="./about.html">About</a>
+            <a href="./contact.html">Contact</a>
+            <a href="./privacy-policy.html">Privacy Policy</a>
+            <a href="./terms.html">Terms</a>
+        </div>
+    </footer>
+
+    <script src="./script.js"></script>
+</body>
+</html>
