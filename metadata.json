@@ -1,0 +1,6 @@
+{
+  "name": "Age Calculator",
+  "description": "A premium, precision age calculator with live countdowns, fun stats, and a modern dark aesthetic.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
